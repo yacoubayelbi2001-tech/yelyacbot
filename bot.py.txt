@@ -1,0 +1,69 @@
+import os
+import telebot
+# Récupération du token depuis la variable d'environnement Render
+TOKEN = os.getenv("BOT_TOKEN")
+if not TOKEN:
+    raise RuntimeError("❌ BOT_TOKEN manquant — configure-le dans Render (Environment Variables)")
+
+bot = telebot.TeleBot(TOKEN)
+# ========================
+# 💬 MESSAGES DU BOT
+# ========================
+WELCOME_MSG = (
+    "👋 Bienvenue sur *YelyacBot* !\n\n"
+    "Je suis ton assistant automatique Telegram. "
+    "Utilise /help pour découvrir ce que je peux faire pour toi."
+)
+HELP_MSG = (
+    "📋 *Commandes disponibles :*\n"
+    "/start - Accueil\n"
+    "/help - Liste des commandes\n"
+    "/about - À propos du bot\n"
+    "/contact - Contacter l’administrateur\n"
+    "/services - Voir les services disponibles"
+)
+ABOUT_MSG = (
+    "🤖 *YelyacBot* est un bot développé pour automatiser certaines tâches et "
+    "faciliter la communication. Il est géré par Yacoub (@YEL_Yac)."
+)
+CONTACT_MSG = (
+    "📩 *Contact administrateur :*\n"
+    "👉 [@YEL_Yac](https://t.me/YEL_Yac)\n\n"
+    "Envoie-moi un message directement sur Telegram."
+)
+SERVICES_MSG = (
+    "🛠️ *Services proposés :*\n"
+    "1️⃣ Support et assistance\n"
+    "2️⃣ Infos et actualités\n"
+    "3️⃣ Réponses automatiques personnalisées"
+)
+# ========================
+# ⚙️ COMMANDES DU BOT
+# ========================
+@bot.message_handler(commands=['start'])
+def start_handler(message):
+    bot.reply_to(message, WELCOME_MSG, parse_mode='Markdown')
+@bot.message_handler(commands=['help'])
+def help_handler(message):
+    bot.reply_to(message, HELP_MSG, parse_mode='Markdown')
+@bot.message_handler(commands=['about'])
+def about_handler(message):
+    bot.reply_to(message, ABOUT_MSG, parse_mode='Markdown')
+@bot.message_handler(commands=['contact'])
+def contact_handler(message):
+    bot.reply_to(message, CONTACT_MSG, parse_mode='Markdown')
+@bot.message_handler(commands=['services'])
+def services_handler(message):
+    bot.reply_to(message, SERVICES_MSG, parse_mode='Markdown')
+# ========================
+# 📩 MESSAGE PAR DÉFAUT
+# ========================
+@bot.message_handler(func=lambda m: True)
+def fallback_handler(message):
+    bot.reply_to(message, "Je n’ai pas compris 🤔\nEssaie /help pour voir les commandes disponibles.")
+# ========================
+# 🚀 LANCEMENT DU BOT
+# ========================
+if name == "main":
+    print("✅ YelyacBot est en ligne et prêt à répondre !")
+  bot.infinity_polling(timeout=60, long_polling_timeout=60)
