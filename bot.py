@@ -1,4 +1,4 @@
-import os
+ import os
 import telebot
 # Récupération du token depuis la variable d'environnement Render
 TOKEN = os.getenv("BOT_TOKEN")
@@ -66,4 +66,5 @@ def fallback_handler(message):
 # ========================
 if name == "main":
     print("✅ YelyacBot est en ligne et prêt à répondre !")
-  bot.infinity_polling(timeout=60, long_polling_timeout=60)
+    bot.infinity_polling(timeout=60, long_polling_timeout=60)
+
