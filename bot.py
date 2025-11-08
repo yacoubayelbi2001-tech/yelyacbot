@@ -64,8 +64,9 @@ def fallback_handler(message):
 # ========================
 # 🚀 LANCEMENT DU BOT
 # ========================
-if name == "main":
+if __name__ == "__main__":
     print("✅ YelyacBot est en ligne et prêt à répondre !")
     bot.infinity_polling(timeout=60, long_polling_timeout=60)
+
 
 
